@@ -49,4 +49,26 @@ public class WalletTest {
 
         assertDoesNotThrow(() -> wallet.add(1,CurrencyType.DOLLAR));
     }
+
+    @Test
+    void shouldReturnAvailableAmountAsSumOfDifferentCurrencyInPreferredCurrency() {
+        Wallet wallet1 = new Wallet(0,CurrencyType.RUPEE);
+        wallet1.add(50,CurrencyType.RUPEE);
+        wallet1.add(1,CurrencyType.DOLLAR);
+
+        double totalAmount = wallet1.getTotalMoneyAvailable();
+
+        assertThat(totalAmount,is(equalTo(124.85)));
+
+
+        Wallet wallet2 = new Wallet(0,CurrencyType.DOLLAR);
+        wallet2.add(74.85,CurrencyType.RUPEE);
+        wallet2.add(1,CurrencyType.DOLLAR);
+        wallet2.add(149.7,CurrencyType.RUPEE);
+
+        totalAmount = wallet2.getTotalMoneyAvailable();
+
+        assertThat(totalAmount,is(equalTo(4.0)));
+
+    }
 }

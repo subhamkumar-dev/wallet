@@ -35,4 +35,8 @@ public class Wallet {
             return value * 74.85;
         return value / 74.85;
     }
+
+    public double getTotalMoneyAvailable() {
+        return money;
+    }
 }
