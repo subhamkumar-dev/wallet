@@ -14,30 +14,30 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class WalletTest {
     @Test
     void shouldAbleToPutMoneyInWallet() {
-        Wallet wallet = new Wallet(0);
-        int value = 10;
+        Wallet wallet = new Wallet(0,CurrencyType.RUPEE);
+        double value = 10;
 
-        assertDoesNotThrow(() -> wallet.add(value));
+        assertDoesNotThrow(() -> wallet.add(value,CurrencyType.RUPEE));
     }
 
     @Test
     void shouldAbleToWithdrawMoneyFromWallet() throws LowAmountException {
-        Wallet wallet = new Wallet(0);
-        int value = 10;
-        wallet.add(value);
-        int withdrawAmount = 5;
+        Wallet wallet = new Wallet(0,CurrencyType.RUPEE);
+        double value = 10;
+        wallet.add(value,CurrencyType.RUPEE);
+        double withdrawAmount = 5;
 
         wallet.withdraw(withdrawAmount);
-        int resultWithdrawAmount = wallet.getWithdrawMoney();
+        double resultWithdrawAmount = wallet.getWithdrawMoney();
 
         assertThat(resultWithdrawAmount,is(equalTo(withdrawAmount)));
     }
 
     @Test
     void shouldThrowAnExceptionIfWithdrawAmountIsGreaterThanAmountInWallet() {
-        Wallet wallet = new Wallet(0);
+        Wallet wallet = new Wallet(0,CurrencyType.RUPEE);
         int addValue = 100;
-        wallet.add(addValue);
+        wallet.add(addValue,CurrencyType.RUPEE);
         int withdrawAmount = 500;
 
         assertThrows(LowAmountException.class,() -> wallet.withdraw(withdrawAmount));
