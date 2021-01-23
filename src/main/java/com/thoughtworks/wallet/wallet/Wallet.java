@@ -31,9 +31,7 @@ public class Wallet {
     }
 
     private double convertCurrency(double value, CurrencyType type) {
-        if (type == CurrencyType.DOLLAR)
-            return value * 74.85;
-        return value / 74.85;
+        return value * type.convertorMultiplyer;
     }
 
     public double getTotalMoneyAvailable() {

@@ -3,8 +3,6 @@ import com.thoughtworks.wallet.exception.LowAmountException;
 import com.thoughtworks.wallet.wallet.Wallet;
 import org.junit.jupiter.api.Test;
 
-import java.util.Currency;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -69,6 +67,5 @@ public class WalletTest {
         totalAmount = wallet2.getTotalMoneyAvailable();
 
         assertThat(totalAmount,is(equalTo(4.0)));
-
     }
 }
